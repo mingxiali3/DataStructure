@@ -1,5 +1,5 @@
 /*
-[名称]：02_fibonacci_polynomial_mingxia.cpp
+[名称]：02_fibonacci_polynomial.cpp
 [示范]：1.用递归函数求斐波拉契数列    
 */
 #include <iostream>
