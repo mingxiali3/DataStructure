@@ -12,8 +12,8 @@ int main()
    int i;
    cout << "请输入 0-100 的整数 i： " << endl;
    cin >> i;//支持终端直接输入计算数字
-   cout << "输出 0 ~ i-1的阶乘值 " << endl;
-   for(int j=0;j<i;j++)
+   cout << "输出 0 ~ i的阶乘值 " << endl;
+   for(int j=0;j<=i;j++)
    cout<< j << "阶乘值为 " << factorial(j) << endl;
    return 0;
 }
