@@ -30,8 +30,11 @@ void hanoi(int n,int p1,int p2,int p3,int& num)
     cout << "盘子从 " << p1 << " 移到 " << p3 << endl;
     else
     {
+        //步骤1: p1->p2，p3做中间桩
         hanoi(n-1,p1,p3,p2,num);
+        //步骤2:p1->p3,这一步以打印的形式体现，把每次最大的那个盘子移到p3对应的木桩上
         cout << "盘子从 " << p1 << " 移到 " << p3 << endl;
+        //步骤3：p2->p3，p1做中间桩
         hanoi(n-1,p2,p1,p3,num);
     }
     ++num;
