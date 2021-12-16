@@ -66,7 +66,7 @@ int main()
    calc_threeDim(2,2,3,300,2,-3,2,-2,3,0,4,false);
   
   //3.假设有以行为主排列的程序设计语言，声明A(1:3,1:4,1:5)数组，且Loc(A(1,1,1)) = 100,请求出Loc(A(1,2,3)) = ? (d =1 )
-   calc_threeDim(1,3,3,100,1,1,3,1,4,1,5,true);
+   calc_threeDim(1,2,3,100,1,1,3,1,4,1,5,true);
 
   //4.A(6,4,2)是以列为主方式排列，若a = 300，且d =1,求A(4,4,1)的地址
    calc_threeDim(4,4,1,300,1,1,6,1,4,1,2,false);
@@ -91,7 +91,7 @@ int calc_twoDim(int i,int j,int a,int d,int m1,int m2,int n1,int n2, bool IsRow)
   cout << "二维数组:A" <<"(" << i <<"," << j << ")" << "\"\t";
   int m,n,loc_h,loc_l = 0;
   m = m2-m1+1;
-  n = n2-n1 +1;
+  n = n2-n1+1;
   //以行为主
   //loc_h = a + ((i-m1+1)-1)*n*d + ((j-n1+1)-1)*d;
   loc_h = a + (i-m1)*n*d + (j-n1)*d;
