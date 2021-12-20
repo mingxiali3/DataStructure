@@ -226,4 +226,4 @@ char *name[4]={"Justinian","Momo","Becky","Bush"};
      Loc(A(aijk)) = a + (i-l1)nod + (j-l2)od + (k-l3)d
      2)以列为主(Column-major):
      Loc(A(aijk)) = a + (k-l3)mnd + (j-l2)md + (i-l1)d
-     
+  
