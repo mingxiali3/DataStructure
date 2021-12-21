@@ -9,9 +9,9 @@
         ""
       ],
       "stopAtEntry": false,
-      "cwd": "/home/limingxia/Desktop/old_data_structure/ch03",
+      "cwd": "/home/limingxia/Desktop/code_day/DataStructure/ch03",
       "environment": [],
-      "program": "/home/limingxia/Desktop/old_data_structure/ch03/build/Debug/outDebug",
+      "program": "/home/limingxia/Desktop/code_day/DataStructure/ch03/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "/usr/bin/gdb",
