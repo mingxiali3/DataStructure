@@ -139,21 +139,21 @@ class list   //链表结构的声明
 
 1)删除链表的第一个节点:只要把链表头指针指向第二个节点即可。
 
-     top=head;
-     head=head->next;
-     free(top);
+   top=head;
+   head=head->next;
+   free(top);
 
 2)删除链表的最后一个节点:只要指向最后一个节点的指针，直接指向NULL即可。
 
-     ptr->next = tail;
-     ptr->next = NULL;
-     free(tail);
+   ptr->next = tail;
+   ptr->next = NULL;
+   free(tail);
 
 3)删除链表内的中间节点：只要将删除节点的前一个节点的指针，指向将要被删除节点的下一个节点即可。
 
-     Y = ptr->next;
-     ptr->next = Y->next;
-     free(Y);
+   Y = ptr->next;//Y是ptr的小伙伴
+   ptr->next = Y->next;//将Y的小伙伴作为ptr的小伙伴
+   free(Y);//丢弃Y了
 
  【单向链表的反转】
   
