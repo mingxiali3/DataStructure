@@ -1,5 +1,5 @@
 /*
- [名称]:07_concatenationSinglelinkedlist.cpp
+ [名称]:07_concatenationSinglelinkedlist.cpp 单向链表的连接功能
  [示范]：1.设计一个C++程序，将学生成绩链表与新的学生成绩链表连接起来。
 */
 #include <iostream>
