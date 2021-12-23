@@ -55,7 +55,7 @@
 
 下面就是动态分配一维数组的方式，语法如下：
 
-     数据类型 *指针数组变量 = new 数据类型[元素个数];
+   数据类型 *指针数组变量 = new 数据类型[元素个数];
    
 分配动态数组时，须在中括号内指定预分配数组的元素个数。当分配成功时，系统会返回该数组的起始地址，否则返回NULL值。
 当分配的动态数组在程序中已不再使用时，也必须使用delete运算符来释放该动态数组。
@@ -204,17 +204,17 @@ Step4:由于新节点当前为链表的最后一个元素，所以将它的指�
   1).将新节点插在第一个节点前成为链表头部：首先将新节点X的指针指向原链表头节点，并遍历整个链表找到链表末尾，将它的指针指向新增节点，
   最后将链表头指针指向新节点。
 
-             x->next = head;
-             CurNode = head;
-             While (CurNode->next != head)
-               CurNode = CurNode->next;//找到链表末尾后，将它的指针指向新增节点
-             CurNode->next = x;
-             head = x; //将链表头指针指向新增节点
+   x->next = head;
+   CurNode = head;
+   While (CurNode->next != head)
+     CurNode = CurNode->next;//找到链表末尾后，将它的指针指向新增节点
+   CurNode->next = x;
+   head = x; //将链表头指针指向新增节点
 
   2).将新节点X插在链表中任意节点I之后：首先将新节点X的指针指向I节点的下一个节点，并将I节点的指针指向X节点。
 
-              X->next = I->next;
-              I->next = X;
+    X->next = I->next;
+    I->next = X;
 
   2. 环形链表节点的删除
   环形链表节点的删除与插入方法类似，也分为两种情况:
@@ -222,23 +222,23 @@ Step4:由于新节点当前为链表的最后一个元素，所以将它的指�
   1).删除环形链表的第一个节点：首先将链表头指针移到下一个节点，将最后一个节点的指针指向新的链表头部，
    新的链表头部是原链表的第二个节点。
 
-          CurNode = head;
-          While (CurNode->next != head)
-               CurNode = CurNode->next;//找到最后一个节点并记录下俩
-          TailNode = CurNode;//将链表头指针移到下一个节点
-          head = head->next;//将链表最后一个节点的指针指向新的链表头部
-          TailNode->next = head;
+     CurNode = head;
+     While (CurNode->next != head)
+          CurNode = CurNode->next;//找到最后一个节点并记录下俩
+     TailNode = CurNode;//将链表头指针移到下一个节点
+     head = head->next;//将链表最后一个节点的指针指向新的链表头部
+     TailNode->next = head;
  
   2).删除环形链表的中间节点。首先找到节点Y的前一个节点previous,将previous节点的指针指向节点Y的下一个节点。
 
-          CurNode = head;
-          while (CurNode->next != del)
-               CurNode = CurNode->next;
-          //找到要删除节点的前一个节点并记录下来
-          PreNode = CurNode;//要删除的节点
+     CurNode = head;
+     while (CurNode->next != del)
           CurNode = CurNode->next;
-          //将要删除节点的前一个指针指向要删除节点的下一个节点
-          PreNode->next = CurNode->next;
+     //找到要删除节点的前一个节点并记录下来
+     PreNode = CurNode;//要删除的节点
+     CurNode = CurNode->next;
+     //将要删除节点的前一个指针指向要删除节点的下一个节点
+     PreNode->next = CurNode->next;
 
   3. 环形链表的连接功能
    单向链表的连接只要改变一个指针就可以了。
