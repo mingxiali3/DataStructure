@@ -56,12 +56,12 @@ int main()
         for(int j=0;j<10;j++)
             newnode->name[j]=namedata[i][j];
         newnode->score=data[i][1];
-        newnode->next=newnode;
+        newnode->next=NULL;
         ptr->next=newnode;
         ptr=ptr->next;
     }
     while (1)
-    {
+{
         cout << "请输入要删除的成绩，结束输入-1: ";
         cin >> findword;
         if(findword==-1) //循环中断条件

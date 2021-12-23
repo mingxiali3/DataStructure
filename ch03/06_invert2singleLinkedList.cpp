@@ -1,5 +1,5 @@
 /*
- [名称]:05_invert2singleLinkedList.cpp
+ [名称]:06_invert2singleLinkedList.cpp
  [示范]：1.设计一个C++程序，延续04_insert2singleLinkedList.cpp，
         将学生数据的链表节点按照座号反转打印出来。
 */

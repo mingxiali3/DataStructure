@@ -130,7 +130,7 @@ int main()
     cout << "\t===============================\n";
     while(ptr!=NULL)
     {
-        cout << "\t[" << ptr->num << "]\t[ " << ptr->name << "]" << setw(6) << "\t[" << ptr->score << "]\n";
+        cout << "\t[" << ptr->num << "]\t[" << ptr->name << "]" << setw(6) << "\t[" << ptr->score << "]\n";
         ptr=ptr->next;
     }
     delete head;

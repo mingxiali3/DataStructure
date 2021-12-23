@@ -19,7 +19,7 @@ int main()
         cin >> ptr[count];//采用数组下标来输入数组元素
     }
     for(count=0;count < no;count++)
-        Total+=*(ptr+count);//采用指针变量运算来存取数组的元素值
+        Total+=*(ptr+count);//采用指针变量运算来存取数组的元素
     cout << "---------------------------------" << endl;
     cout << no << "个数的总和= " << Total;//显示结果
     cout << endl;
