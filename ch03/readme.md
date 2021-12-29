@@ -330,7 +330,7 @@ delete 运算符释放动态数组的使用格式如下所示：
           ptr->rlink->llink = X;//ptr的下一个节点的左指针指向X
           X->rlink = ptr->rlink;//X的右指针等同ptr的右指针
           X->llink = ptr;//X的左指针指向ptr
-          ptr->rlink = X;//ptr的右指针指向X  
+          ptr->rlink = X;//ptr的右指针指向X;完成双向指向 
 
 
   3.双向链表节点的删除
