@@ -132,8 +132,8 @@ delete 运算符释放动态数组的使用格式如下所示：
  针对第3种情况，将新节点插入链表中间的位置:例如插入的节点是在X与Y之间，只要将X节点的指针指向
  新节点，新节点的指针指向Y节点即可。
 
-     newnode->next = x->next;//x的伙伴成了新节点的伙伴，x没伙伴了
-     x->next = newnode;//新节点成为了x的伙伴
+     newnode->next = x->next;//x的下一个节点成为新节点的下一个节点
+     x->next = newnode;//新节点称为x的下一个节点
 
 【单向链表删除节点】
 
@@ -143,20 +143,20 @@ delete 运算符释放动态数组的使用格式如下所示：
 1)删除链表的第一个节点:只要把链表头指针指向第二个节点即可。
 
      top=head;
-     head=head->next;
-     free(top);
+     head=head->next;//将原来第一个节点的下一个节点成为新的第一个节点
+     free(top);//销毁头指针
 
 2)删除链表的最后一个节点:只要指向最后一个节点的指针，直接指向NULL即可。
 
-     ptr->next = tail;
-     ptr->next = NULL;
-     free(tail);
+     ptr->next = tail;//ptr暂时拉过来当中间人，将尾指针成为ptr的下一个节点
+     ptr->next = NULL;//将ptr的下一个节点置为NULL
+     free(tail);//销毁尾指针
 
 3)删除链表内的中间节点：只要将删除节点的前一个节点的指针，指向将要被删除节点的下一个节点即可。
 
-     Y = ptr->next;//Y是ptr的小伙伴
-     ptr->next = Y->next;//将Y的小伙伴作为ptr的小伙伴
-     free(Y);//丢弃Y了
+     Y = ptr->next;//Y是ptr的下一个节点的指针，也即ptr是Y的前一个节点的指针
+     ptr->next = Y->next;//ptr的下一个节点指向Y的下一个节点；直接跳过Y
+     free(Y);//销毁Y
 
 【单向链表的反转】
   
@@ -177,14 +177,14 @@ delete 运算符释放动态数组的使用格式如下所示：
     link invert(link x) //x为链表的开始指针
     {
          link p,q,r;
-         p=x;//将p指向链表的开头
-         q=NULL;//q是p的前一个节点
+         p=x;//将p指向链表的开头，p排第1位
+         q=NULL;//q是p的前一个节点，q排第0位，且是NULL指针
          while(p!=NULL)
          {
-              r=q;//将r接到q之后
-              q=p;//将q接到p之后
-              p=p->next;//p移到下一个节点
-              q->next=r;//q接到之前的节点
+              r=q;//将r接到q之后，r排第0位
+              q=p;//将q接到p之后，q排第1位
+              p=p->next;//p移到下一个节点，p排第2位
+              q->next=r;//q接到之前的节点，q的下一个节点排第0位
          }
          return q;
     }
@@ -194,7 +194,9 @@ delete 运算符释放动态数组的使用格式如下所示：
   环形链表(circular linked list)的特点是在链表中的任何一个节点，都可以达到此链表内的其他各个节点，建立的过程与单向链表相似，
   唯一的不同点是必须要将最后一个节点指向第一个节点。
   事实上，环形链表的优点是可以从任何一个节点开始遍历所有节点，而且回收整个链表所需的时间是固定的，与长度无关，缺点是需要多一个链接空间，
-  而且插入一个节点需要改变两个链接。环形链表的遍历与单向链表十分相似，不过检查环形链表结束的条件是ptr->next != head。
+  而且插入一个节点需要改变两个链接。环形链表的遍历与单向链表十分相似，不过检查环形链表结束的条件是
+  
+       ptr->next != head
   
   1.环形链表中插入新节点
   对于环形链表的节点插入，与单向链表的插入方式有点不同，由于每一个节点的指针都是指向下一个节点，所以没有所谓从链表尾部插入的问题。
@@ -203,12 +205,12 @@ delete 运算符释放动态数组的使用格式如下所示：
   1).将新节点插在第一个节点前成为链表头部：首先将新节点X的指针指向原链表头节点，并遍历整个链表找到链表末尾，将它的指针指向新增节点，
   最后将链表头指针指向新节点。
 
-     x->next = head;
-     CurNode = head;
-     While (CurNode->next != head)
-          CurNode = CurNode->next;//找到链表末尾后，将它的指针指向新增节点
-     CurNode->next = x;
-     head = x; //将链表头指针指向新增节点
+     x->next = head;//新节点x的下一个节点指向原链表头节点
+     CurNode = head;//把头节点视作当前节点的起点
+     While (CurNode->next != head)  //环形链表中，需要使用循环遍历整个链表找到链表末尾，条件是当前节点的下一个节点的指针是否指向头节点，是的话，那就说明当前节点的下一个节点指向头指针
+          CurNode = CurNode->next;//未找到链尾之前，当前节点一直往右移
+     CurNode->next = x;//已经不满足while循环的条件退出循环了，那就说明CurNode->next = head;已知当前节点的下一个节点指向头指针，现在指向新节点x
+     head = x; //新增节点x成为头指针
 
   2).将新节点X插在链表中任意节点I之后：首先将新节点X的指针指向I节点的下一个节点，并将I节点的指针指向X节点。
 
@@ -222,21 +224,21 @@ delete 运算符释放动态数组的使用格式如下所示：
    新的链表头部是原链表的第二个节点。
 
      CurNode = head;
-     While (CurNode->next != head)
-          CurNode = CurNode->next;//找到最后一个节点并记录下俩
-     TailNode = CurNode;//将链表头指针移到下一个节点
-     head = head->next;//将链表最后一个节点的指针指向新的链表头部
-     TailNode->next = head;
+     While (CurNode->next != head) //环形链表中，需要使用循环遍历整个链表找到链表末尾，条件是当前节点的下一个节点的指针是否指向头节点，是的话，那就说明当前节点的下一个节点指向头指针
+          CurNode = CurNode->next;//未找到链尾之前，当前节点一直往右移
+     TailNode = CurNode;//已经不满足while循环的条件退出循环了，那就说明CurNode->next = head;既然如此，当前节点CurNode就是尾指针TailNode
+     head = head->next;//将头指针指向的下一个节点赋给新的头节点
+     TailNode->next = head;//再次刷新，将尾指针的下一个节点指向新的头节点
  
   2).删除环形链表的中间节点。首先找到节点Y的前一个节点previous,将previous节点的指针指向节点Y的下一个节点。
 
-     CurNode = head;
-     while (CurNode->next != del)
-          CurNode = CurNode->next;
+     CurNode = head;//当前节点从头节点开始
+     while (CurNode->next != del)  //环形链表中，删除中间节点del，那就开始循环遍历吧！设置条件：当前节点的下一个节点指向要删除的节点del
+          CurNode = CurNode->next;//未找到中间节点del之前，当前节点一直往右移
      //找到要删除节点的前一个节点并记录下来
-     PreNode = CurNode;//要删除的节点
-     CurNode = CurNode->next;
-     //将要删除节点的前一个指针指向要删除节点的下一个节点
+     PreNode = CurNode;//由于CurNode是要删除节点的前一个节点，将它赋给PreNode
+     CurNode = CurNode->next;//刷新当前节点，将要删除的节点CurNode->next赋给CurNode;新的CurNode就代表要删除的节点
+     //将要删除节点CurNode的前一个指针PreNode指向要删除节点CurNode的下一个节点
      PreNode->next = CurNode->next;
 
   3. 环形链表的连接功能
