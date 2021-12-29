@@ -207,9 +207,11 @@ delete 运算符释放动态数组的使用格式如下所示：
 
      x->next = head;//新节点x的下一个节点指向原链表头节点
      CurNode = head;//把头节点视作当前节点的起点
-     While (CurNode->next != head)  //环形链表中，需要使用循环遍历整个链表找到链表末尾，条件是当前节点的下一个节点的指针是否指向头节点，是的话，那就说明当前节点的下一个节点指向头指针
+     //环形链表中，需要使用循环遍历整个链表找到链表末尾，条件是当前节点的下一个节点的指针是否指向头节点，是的话，那就说明当前节点的下一个节点指向头指针
+     While (CurNode->next != head)  
           CurNode = CurNode->next;//未找到链尾之前，当前节点一直往右移
-     CurNode->next = x;//已经不满足while循环的条件退出循环了，那就说明CurNode->next = head;已知当前节点的下一个节点指向头指针，现在指向新节点x
+     //已经不满足while循环的条件退出循环了，那就说明CurNode->next = head;已知当前节点的下一个节点指向头指针，现在指向新节点x
+     CurNode->next = x;
      head = x; //新增节点x成为头指针
 
   2).将新节点X插在链表中任意节点I之后：首先将新节点X的指针指向I节点的下一个节点，并将I节点的指针指向X节点。
@@ -224,20 +226,24 @@ delete 运算符释放动态数组的使用格式如下所示：
    新的链表头部是原链表的第二个节点。
 
      CurNode = head;
-     While (CurNode->next != head) //环形链表中，需要使用循环遍历整个链表找到链表末尾，条件是当前节点的下一个节点的指针是否指向头节点，是的话，那就说明当前节点的下一个节点指向头指针
+     //环形链表中，需要使用循环遍历整个链表找到链表末尾，条件是当前节点的下一个节点的指针是否指向头节点，是的话，那就说明当前节点的下一个节点指向头指针
+     While (CurNode->next != head) 
           CurNode = CurNode->next;//未找到链尾之前，当前节点一直往右移
-     TailNode = CurNode;//已经不满足while循环的条件退出循环了，那就说明CurNode->next = head;既然如此，当前节点CurNode就是尾指针TailNode
+     //已经不满足while循环的条件退出循环了，那就说明CurNode->next = head;既然如此，当前节点CurNode就是尾指针TailNode
+     TailNode = CurNode;
      head = head->next;//将头指针指向的下一个节点赋给新的头节点
      TailNode->next = head;//再次刷新，将尾指针的下一个节点指向新的头节点
  
   2).删除环形链表的中间节点。首先找到节点Y的前一个节点previous,将previous节点的指针指向节点Y的下一个节点。
 
      CurNode = head;//当前节点从头节点开始
-     while (CurNode->next != del)  //环形链表中，删除中间节点del，那就开始循环遍历吧！设置条件：当前节点的下一个节点指向要删除的节点del
+     //环形链表中，删除中间节点del，那就开始循环遍历吧！设置条件：当前节点的下一个节点指向要删除的节点del
+     while (CurNode->next != del)  
           CurNode = CurNode->next;//未找到中间节点del之前，当前节点一直往右移
      //找到要删除节点的前一个节点并记录下来
      PreNode = CurNode;//由于CurNode是要删除节点的前一个节点，将它赋给PreNode
-     CurNode = CurNode->next;//刷新当前节点，将要删除的节点CurNode->next赋给CurNode;新的CurNode就代表要删除的节点
+     //刷新当前节点，将要删除的节点CurNode->next赋给CurNode;新的CurNode就代表要删除的节点
+     CurNode = CurNode->next;
      //将要删除节点CurNode的前一个指针PreNode指向要删除节点CurNode的下一个节点
      PreNode->next = CurNode->next;
 
