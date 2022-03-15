@@ -53,6 +53,10 @@ void sequence(SqList &L,int &index)
            index = i;    
        } 
     }
+    //L.data[index]=L.data[L.length-1];
+    //L.length--;
+
+
 }
 bool ListDelete(SqList &L,int i,int &e){
     if(i<1 || i>L.length) //判断i的范围是否有效
@@ -61,7 +65,7 @@ bool ListDelete(SqList &L,int i,int &e){
     L.data[i-1] = L.data[L.length-1];
     // for(int j=i;j<L.length;j++)//将第i个位置后的元素前移
     //     L.data[j-1]=L.data[j];//问题规模n =L.length
-    // L.length--;
+    L.length--;
     return true;
 }
 int main()
@@ -79,12 +83,14 @@ int main()
     ListInsert(L,8,29);   
     ListInsert(L,9,13);
     ListInsert(L,10,18);  
-    
+    printf("Before...\n");
+    printList(L);
     int index = 1;//声明index 是为了把那个值最小的元素的索引带回来
     sequence(L,index);
     printf("The deleted value is data[%d]=%d\n",index,L.data[index]);
     int e = -1;
     ListDelete(L,index+1,e);
+    printf("After...\n");
     printList(L);
     return 0;       
     

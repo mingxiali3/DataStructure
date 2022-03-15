@@ -39,6 +39,8 @@ void printList(SqList &L)
         printf("data[%d]=%d\n",i,L.data[i]);
     }
 }
+/*
+First method:
 
 void sequence(SqList &L,int value)
 {
@@ -60,9 +62,27 @@ void sequence(SqList &L,int value)
     printList(_L);
     
 }
+*/
+/*
+Second Method:
+*/
+void sequence(SqList &L,int value)
+{
+    int k = 0,i;
+    for(i=0;i<L.length;i++)
+    {
+        if(L.data[i]!= value)
+        {
+            L.data[k]=L.data[i];
+            k++;
+        }
+    }
+    L.length = k;
+}
+
 int main()
 {
-    SqList L1,L2;//声明一个顺序表
+    SqList L1;//声明一个顺序表
     InitList(L1);//初始化顺序表
     //此处插入一些元素
     ListInsert(L1,1,1);
@@ -78,7 +98,8 @@ int main()
     printf("Before....\n"); 
     printList(L1);   
     sequence(L1,1);
-   
+    printf("After....\n"); 
+    printList(L1); 
     return 0;       
 
 
