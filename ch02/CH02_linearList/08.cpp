@@ -4,8 +4,8 @@
     NOT have finished yet...
 */
 #include <stdio.h>
-#define MaxSize 10 // Define maximaSize
-#define arraySize 20
+#define MaxSize 15 // Define maximaSize
+
 typedef struct{
     int data[MaxSize];
     int length;
@@ -38,7 +38,7 @@ void printList(SqList &L)
 void reverse(SqList &L,int left,int right)
 {
     //reverse (aleft,aleft+1,aleft+2...,aright) to (aright,aright-1,...,aleft)
-    if(left >=right || right >= arraySize)
+    if(left >=right || right >= L.length)
         return;
     int mid = (left+right)/2;
     for(int i = 0; i <= mid-left;i++)
@@ -63,10 +63,10 @@ void exchange(SqList &L,int m,int n)
 }
 int main()
 {
-    SqList L1,L2;//声明一个顺序表
+    SqList L1;//声明一个顺序表
     InitList(L1);//初始化顺序表
-    InitList(L2);
-    int A[arraySize]={0};
+    
+ 
     //此处插入一些元素
     ListInsert(L1,1,1);
     ListInsert(L1,2,1);
