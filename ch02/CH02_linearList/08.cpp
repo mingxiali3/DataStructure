@@ -24,7 +24,7 @@ bool ListInsert(SqList &L,int i,int e){
     for(int j = L.length; j>= i;j--)
         L.data[j]=L.data[j-1];
     L.data[i-1]=e;
-    printf("in the position %d succesful set %d\n",i,e);
+    //printf("in the position %d succesful set %d\n",i,e);
     L.length++;
     return true;
 }
@@ -35,7 +35,7 @@ void printList(SqList &L)
         printf("data[%d]=%d\n",i,L.data[i]);
     }
 }
-void reverse(int A[],int left,int right)
+void reverse(SqList &L,int left,int right)
 {
     //reverse (aleft,aleft+1,aleft+2...,aright) to (aright,aright-1,...,aleft)
     if(left >=right || right >= arraySize)
@@ -43,17 +43,23 @@ void reverse(int A[],int left,int right)
     int mid = (left+right)/2;
     for(int i = 0; i <= mid-left;i++)
     {
-        int temp = A[left+i];
-        A[left+i] = A[right-i];
-        A[right-i] = temp;
+        int temp =L.data[left+i];
+        L.data[left+i]=L.data[right-i];
+        L.data[right-i] = temp;
     }
 }
-void exchange(int A[],int m,int n)
+void exchange(SqList &L,int m,int n)
 {
     //In array A[m+n],from 0 to m-1 locate list (a1,a2,a3,..,am),from m to m+n-1 locate (b1,b2,b3,..,bn),this algorithm change this two list
-    reverse(A,0,m+n-1);
-    reverse(A,0,n-1);
-    reverse(A,n,m+n-1);
+    reverse(L,0,m+n-1);
+    printf("The first : \n ");
+    printList(L);
+    reverse(L,0,n-1);
+    printf("The second : \n");
+    printList(L);
+    reverse(L,n,m+n-1);
+    printf("The third : \n");
+    printList(L);
 }
 int main()
 {
@@ -67,15 +73,15 @@ int main()
     ListInsert(L1,3,3);
     ListInsert(L1,4,4);
     ListInsert(L1,5,4);
-    ListInsert(L2,1,2);
-    ListInsert(L2,2,7);
-    ListInsert(L2,3,9);   
-    ListInsert(L2,4,10);
-    ListInsert(L2,5,11); 
-    printf("L1...\n"); 
-    printList(L1);  
-    printf("L2...\n");
-    printList(L2);
+    ListInsert(L1,6,2);
+    ListInsert(L1,7,7);
+    ListInsert(L1,8,9);   
+    ListInsert(L1,9,10);
+    ListInsert(L1,10,11); 
+    printf("Before..L1...\n"); 
+    printList(L1); 
+    printf("After exchange...\n"); 
+    exchange(L1,3,7);
     //
     
     return 0;       
