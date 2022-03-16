@@ -10,3 +10,91 @@
 
 
 */
+#include <stdio.h>
+#define MaxSize 15 // Define maximaSize
+
+typedef struct{
+    int data[MaxSize];
+    int length;
+}SqList;
+void InitList(SqList &L)
+{
+    for(int i = 0; i< MaxSize;i++)
+        L.data[i]=0;
+    L.length = 0;
+}
+bool ListInsert(SqList &L,int i,int e){
+    if(i<1 || i > L.length+1)
+        return false;
+    if(L.length >= MaxSize)
+        return false;
+    for(int j = L.length; j>= i;j--)
+        L.data[j]=L.data[j-1];
+    L.data[i-1]=e;
+    //printf("in the position %d succesful set %d\n",i,e);
+    L.length++;
+    return true;
+}
+void printList(SqList &L)
+{
+    for(int i = 0; i < L.length;i++)
+    {
+        printf("data[%d]=%d\n",i,L.data[i]);
+    }
+}
+//算法思想：
+int Majority(SqList &L)
+{
+  int i,c,count = 1;
+  int n = L.length;
+  c=L.data[0];
+  for(i=1;i<n;i++)
+  {
+    if(L.data[i]==c)
+      count++;
+    else
+      if(count > 0)
+        count--;
+      else
+      {
+        c=L.data[i];
+        count = 1;
+      }
+  }
+  if(count > 0)
+  {
+    for(i=count=0;i<n;i++)
+      if(L.data[i]==c)
+      {
+        count++;
+      }
+  }
+  if(count>n/2)
+    return c;
+  else
+    return -1;
+}
+
+int main()
+{
+    SqList L1;//声明一个顺序表
+    InitList(L1);//初始化顺序表
+    int major;
+
+ 
+    //此处插入一些元素
+    ListInsert(L1,1,2);
+    ListInsert(L1,2,1);
+    ListInsert(L1,3,2);
+    ListInsert(L1,4,1);
+    ListInsert(L1,5,2);
+
+
+    printf("First is L1: \n");
+    printList(L1);
+    
+    major=Majority(L1);
+    printf("major:%d\n",major);
+
+    return 0;       
+}
