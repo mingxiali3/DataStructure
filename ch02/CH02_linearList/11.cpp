@@ -40,6 +40,7 @@ void printList(SqList &L)
         printf("data[%d]=%d\n",i,L.data[i]);
     }
 }
+//算法思想：将升序表L1，L2合为一个List L3,在这个过程中对L3排序，再找出L3的中位数
 void sequence(SqList L1,SqList L2,SqList &L3,int& mid)
 {
     int i,j,k;
